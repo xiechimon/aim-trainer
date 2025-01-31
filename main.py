@@ -20,8 +20,10 @@ BG_COLOR = (0, 25, 40)
 LIVES = 3
 TOP_BAR_HEIGHT = 50
 
-LABEL_FONT = pygame.font.SysFont("comicsans", 24)
+LABEL_FONT = pygame.font.Font("attachment/font.ttf", 32)
 
+img = pygame.image.load("attachment/aim.png")
+pygame.display.set_icon(img)
 
 class Target:
     MAX_SIZE = 30
@@ -75,14 +77,14 @@ def format_time(secs):
 def draw_top_bar(win, elapsed_time, targets_pressed, missed):
     pygame.draw.rect(win, "grey", (0, 0, WIDTH, TOP_BAR_HEIGHT))
     time_label = LABEL_FONT.render(
-        f"Time: {format_time(elapsed_time)}", 1, "black")
+        f"时间：{format_time(elapsed_time)}", 1, "black")
 
     speed = round(targets_pressed / elapsed_time, 1)
-    speed_label = LABEL_FONT.render(f"Speed:{speed} t/s", 1, "black")
+    speed_label = LABEL_FONT.render(f"速度：{speed} t/s", 1, "black")
 
-    hits_label = LABEL_FONT.render(f"Hits:{targets_pressed}", 1, "black")
+    hits_label = LABEL_FONT.render(f"命中数：{targets_pressed}", 1, "black")
 
-    lives_label = LABEL_FONT.render(f"Lives:{LIVES - missed}", 1, "black")
+    lives_label = LABEL_FONT.render(f"生命：{LIVES - missed}", 1, "black")
 
     win.blit(time_label, (5, 5))
     win.blit(speed_label, (200, 5))
@@ -93,15 +95,15 @@ def draw_top_bar(win, elapsed_time, targets_pressed, missed):
 def end_screen(win, elapsed_time, targets_pressed, clicks):
     win.fill(BG_COLOR)
     time_label = LABEL_FONT.render(
-        f"Time: {format_time(elapsed_time)}", 1, "white")
+        f"时间：{format_time(elapsed_time)}", 1, "white")
 
     speed = round(targets_pressed / elapsed_time, 1)
-    speed_label = LABEL_FONT.render(f"Speed:{speed} t/s", 1, "white")
+    speed_label = LABEL_FONT.render(f"速度：{speed} t/s", 1, "white")
 
-    hits_label = LABEL_FONT.render(f"Hits:{targets_pressed}", 1, "white")
+    hits_label = LABEL_FONT.render(f"命中数：{targets_pressed}", 1, "white")
 
     accuracy = round(targets_pressed / clicks * 100, 1)
-    accuracy_label = LABEL_FONT.render(f"Accuracy:{accuracy}%", 1, "white")
+    accuracy_label = LABEL_FONT.render(f"命中率：{accuracy}%", 1, "white")
 
     win.blit(time_label, (get_medium(time_label), 100))
     win.blit(speed_label, (get_medium(speed_label), 200))
