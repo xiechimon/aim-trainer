@@ -11,7 +11,7 @@ WIDTH, HEIGHT = 800, 600
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Aim Trainer")
 
-TARGET_INCREMENT = 550  # 调整难度，↑难
+TARGET_INCREMENT = 550  # 调整难度
 TARGET_EVENT = pygame.USEREVENT
 
 TARGET_PADDING = 30
